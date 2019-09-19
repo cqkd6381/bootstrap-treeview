@@ -15,8 +15,8 @@
   },
   "licenses": "MIT",
   "main": [
-    "dist/bootstrap-treeview.min.js",
-    "dist/bootstrap-treeview.min.css"
+    "src/bootstrap-treeview.js",
+    "src/bootstrap-treeview.css"
   ],
   "scripts": {
     "install": "bower install",

@@ -1,22 +1,3 @@
-/* =========================================================
- * bootstrap-treeview.js v1.2.0
- * =========================================================
- * Copyright 2013 Jonathan Miles
- * Project URL : http://www.jondmiles.com/bootstrap-treeview
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ========================================================= */
-
 ;(function ($, window, document, undefined) {
 
 	/*global jQuery, console*/
@@ -99,6 +80,9 @@
 			// Initialize / destroy methods
 			init: $.proxy(this.init, this),
 			remove: $.proxy(this.remove, this),
+
+			// Add Nodes Method
+            addNewNodes: $.proxy(this.addNewNodes, this),
 
 			// Get methods
 			getNode: $.proxy(this.getNode, this),
@@ -1205,6 +1189,32 @@
 				return undefined;
 			}
 		}
+	};
+
+	/**
+	 * 给节点添加子节点
+	 * @param {Object|Number} identifiers - A valid node, node id or array of node identifiers
+	 * @param {optional Object} options.node; 
+	 */
+	Tree.prototype.addNewNodes = function (identifiers, options) {
+	    this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
+	            this.setNewNodes(node, options);
+	    }, this));
+
+	    this.setInitialStates({ nodes: this.tree }, 0);
+	    this.render();
+	};
+
+	/**
+	 *  添加子节点
+	 */
+	Tree.prototype.setNewNodes = function (node, options) {
+	    if (node.nodes == null) node.nodes = [];
+	    if (options.nodes) {
+	        $.each(options.nodes, function (index,option) {
+	            node.nodes.push(option);
+	        })
+	    }
 	};
 
 	var logError = function (message) {
