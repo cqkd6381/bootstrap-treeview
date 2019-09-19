@@ -82,7 +82,8 @@
 			remove: $.proxy(this.remove, this),
 
 			// Add Nodes Method
-            addNewNodes: $.proxy(this.addNewNodes, this),
+            addNodes: $.proxy(this.addNodes, this),
+            addNode: $.proxy(this.addNode, this),
 
 			// Get methods
 			getNode: $.proxy(this.getNode, this),
@@ -1192,13 +1193,13 @@
 	};
 
 	/**
-	 * 给节点添加子节点
+	 * 批量给节点添加子节点
 	 * @param {Object|Number} identifiers - A valid node, node id or array of node identifiers
 	 * @param {optional Object} options.node; 
 	 */
-	Tree.prototype.addNewNodes = function (identifiers, options) {
+	Tree.prototype.addNodes = function (identifiers, options) {
 	    this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
-            this.setNewNodes(node, options);
+            this.setAddNodes(node, options);
 	    }, this));
 
 	    this.setInitialStates({ nodes: this.tree }, 0);
@@ -1208,12 +1209,36 @@
 	/**
 	 * 添加子节点
 	 */
-	Tree.prototype.setNewNodes = function (node, options) {
+	Tree.prototype.setAddNodes = function (node, options) {
 	    if (node.nodes == null) node.nodes = [];
 	    if (options.nodes) {
 	        $.each(options.nodes, function (index,option) {
 	            node.nodes.push(option);
 	        })
+	    }
+	};
+
+	/**
+	 * 单个给节点添加子节点
+	 * @param {Object|Number} identifiers - A valid node, node id or array of node identifiers
+	 * @param {optional Object} options.node; 
+	 */
+	Tree.prototype.addNode = function (identifiers, options) {
+	    this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
+            this.setAddNode(node, options);
+	    }, this));
+
+	    this.setInitialStates({ nodes: this.tree }, 0);
+	    this.render();
+	};
+
+	/**
+	 * 添加子节点
+	 */
+	Tree.prototype.setAddNode = function (node, options) {
+	    if (node.nodes == null) node.nodes = [];
+	    if (options.node) {
+            node.nodes.push(options.node);
 	    }
 	};
 

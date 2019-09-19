@@ -701,10 +701,18 @@ Triggers `nodeUnselected` event; pass silent to suppress events.
 
 #### addNode(node | nodeId, options)
 
-添加动态添加子节点的方法addNode
+添加动态单个添加子节点的方法addNode
 
 ```javascript
 $('#tree').treeview('addNode', [ nodeId, { node: { text: 'newText', selectable: ''} } ]);
+```
+
+#### addNodes(node | nodeId, options)
+
+添加动态批量添加子节点的方法addNode
+
+```javascript
+$('#tree').treeview('addNode', [ nodeId, { nodes: [{ text: 'newText', selectable: ''}] } ]);
 ```
 
 ## Events
