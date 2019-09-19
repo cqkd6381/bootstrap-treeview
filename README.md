@@ -699,6 +699,14 @@ $('#tree').treeview('unselectNode', [ nodeId, { silent: true } ]);
 
 Triggers `nodeUnselected` event; pass silent to suppress events.
 
+#### addNode(node | nodeId, options)
+
+添加动态添加子节点的方法addNode
+
+```javascript
+$('#tree').treeview('addNode', [ nodeId, { node: { text: 'newText', selectable: ''} } ]);
+```
+
 ## Events
 
 Events are provided so that your application can respond to changes in the treeview's state.  For example, if you want to update a display when a node is selected use the `nodeSelected` event.

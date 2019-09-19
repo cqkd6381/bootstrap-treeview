@@ -1198,7 +1198,7 @@
 	 */
 	Tree.prototype.addNewNodes = function (identifiers, options) {
 	    this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
-	            this.setNewNodes(node, options);
+            this.setNewNodes(node, options);
 	    }, this));
 
 	    this.setInitialStates({ nodes: this.tree }, 0);
@@ -1206,7 +1206,7 @@
 	};
 
 	/**
-	 *  添加子节点
+	 * 添加子节点
 	 */
 	Tree.prototype.setNewNodes = function (node, options) {
 	    if (node.nodes == null) node.nodes = [];
