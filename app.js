@@ -1,4 +1,8 @@
 
+const morgan = require('morgan');
+const {json, urlencoded} = require('body-parser');
+const methodOverride = require('method-override');
+const errorhandler = require('errorhandler');
 /**
  * Module dependencies.
  */
@@ -11,17 +15,17 @@ var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
+app.use(serve-favicon());
+app.use(morgan('dev'));
+app.use(json());
+app.use(urlencoded());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/tests')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorhandler());
 }
 
 http.createServer(app).listen(app.get('port'), function(){
